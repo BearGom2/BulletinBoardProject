@@ -30,6 +30,7 @@ class ViewHolder(val itemList: ArrayList<boardData>) :
             ContextCompat.startActivity(holder.itemView?.context,intent,null)
         }
     }
+    
 
     override fun getItemCount(): Int {
         return itemList.size
