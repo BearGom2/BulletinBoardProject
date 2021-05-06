@@ -19,7 +19,7 @@ class CreateActivity : AppCompatActivity() {
         SetSave_btn.setOnClickListener {
             if (SetTitle_tv.text.isNotBlank() && SetContent_tv.text.isNotBlank()) {
                 val currentDateTime = Calendar.getInstance().time
-                var dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(currentDateTime)
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(currentDateTime)
                 setBoard(SetTitle_tv.text.toString(), dateFormat, SetContent_tv.text.toString(), getSetName.getName())
                 startActivity(intent)
             } else {

@@ -21,12 +21,12 @@ class ViewHolder(val itemList: ArrayList<boardData>?) :
         if (itemList != null) {
             holder.bindItem(itemList[position])
             holder.itemView.setOnClickListener {
-                val intent = Intent(holder.itemView?.context, MainActivity::class.java)
+                val intent = Intent(holder.itemView.context, MainActivity::class.java)
                 intent.putExtra("title", holder.itemView.titleItem.text)
                 intent.putExtra("name", holder.itemView.writerItem.text)
                 intent.putExtra("day", holder.itemView.dayItem.text)
                 intent.putExtra("content", holder.itemView.contentItem.text)
-                ContextCompat.startActivity(holder.itemView?.context, intent, null)
+                ContextCompat.startActivity(holder.itemView.context, intent, null)
             }
         }
     }
