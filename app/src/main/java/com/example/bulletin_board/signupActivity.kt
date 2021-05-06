@@ -19,13 +19,12 @@ class signupActivity : AppCompatActivity() {
             val password = signupPswEdt.text.toString()
             val repassword = signupRePswEdt.text.toString()
             val name = signupNameEdt.text.toString()
-            val addr = signupAddressEdt.text.toString()
 
             if (password.equals(repassword)) {
-                val call_R: Call<Void> = Client.getClient.join(id, password, name, addr)
+                val call_R: Call<Void> = Client.getClient.join(id, password, name)
                 call_R.enqueue(object : Callback<Void> {
                     override fun onFailure(call: Call<Void>, t: Throwable) {
-                        Toast.makeText(applicationContext, "로그인 실패!" + t.message + t.cause, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "로그인 실패!", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -41,7 +40,7 @@ class signupActivity : AppCompatActivity() {
                     }
                 })
             } else {
-                Toast.makeText(applicationContext, "비밀번호를 일치하게 입력해주십시오!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "비밀번호를 일치하게 입력해주십시오!", Toast.LENGTH_SHORT).show()
             }
         }
     }

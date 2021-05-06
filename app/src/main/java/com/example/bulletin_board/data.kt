@@ -1,17 +1,13 @@
 package com.example.bulletin_board
 
-import java.io.Serializable
-
 data class boardData(
-    val title: String,
-    val writer: String,
-    val day: String,
-    val content: String
-) : Serializable
+    var _title: String,
+    var _name: String,
+    var _day: String,
+    var _content: String
+)
 
 data class userData(
-    val _id: String,
-    val _psw: String,
-    val _name: String,
-    val _email: String
-) : Serializable
+    val id: String,
+    val name: String
+)

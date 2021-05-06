@@ -1,8 +1,8 @@
 package com.example.bulletin_board
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = intent
         Title_tv.text = intent.getStringExtra("title")
-        Writer_tv.text = intent.getStringExtra("writer")
+        Writer_tv.text = intent.getStringExtra("name")
         Day_tv.text = intent.getStringExtra("day")
         Content_tv.text = intent.getStringExtra("content")
     }

@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object Client {
-    val BASE_URL: String = "myServerIP"
+    val BASE_URL: String = "http://49.50.166.23:3000/"
     val getClient: API
         get() {
 

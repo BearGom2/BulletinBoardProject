@@ -13,7 +13,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="200dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="21dp"
         android:hint="Login"
         android:inputType="textEmailAddress"
         android:paddingLeft="8dp"
@@ -39,27 +39,28 @@
         android:id="@+id/loginBtn"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:background="#FFD740"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="40dp"
         android:text="Login"
         android:textAllCaps="false"
+        android:background="#FFD600"
         android:textColor="#ffffff"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@id/gosignupBtn"
-        android:layout_marginBottom="21dp"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@id/gosignupTv"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <Button
-        android:id="@+id/gosignupBtn"
+    <TextView
+        android:id="@+id/gosignupTv"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="50dp"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:background="#FFD740"
         android:text="SignUp"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:gravity="right|top"
+        android:textStyle="bold|italic"
         app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

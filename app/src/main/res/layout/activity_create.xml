@@ -27,21 +27,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:inputType="none"
-        android:id="@+id/SetWriter_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="작성자(아이디)"
-        android:paddingStart="24dp"
-        android:paddingLeft="24dp"
-        android:paddingTop="3dp"
-        android:textColor="#555555"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SetTitle_tv" />
+
 
     <EditText
         android:id="@+id/SetContent_tv"
@@ -51,7 +37,7 @@
         android:layout_marginBottom="56dp"
         android:background="@null"
         android:gravity="left|top"
-        android:hint="@string/radom_text"
+        android:hint="넣고 싶은 본문의 내용을 입력해주십시오."
         android:inputType="none"
         android:paddingStart="24dp"
         android:paddingLeft="24dp"
@@ -62,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SetWriter_tv" />
+        app:layout_constraintTop_toBottomOf="@id/SetTitle_tv" />
 
     <Button
         android:id="@+id/SetSave_btn"
