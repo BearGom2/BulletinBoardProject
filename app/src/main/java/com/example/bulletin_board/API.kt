@@ -27,6 +27,10 @@ interface API {
         @Field("_name") name: String
     ): Call<Void>
 
+    @FormUrlEncoded
+    @POST("/user/login/check")
+    fun check(@Field("_id") id: String): Call<Void>
+
     @POST("/board/list")
     fun board_list(): Call<ArrayList<boardData>>
 }

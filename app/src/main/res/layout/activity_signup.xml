@@ -12,8 +12,22 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="12dp"
         android:hint="ID"
+        app:layout_constraintBottom_toTopOf="@id/checkBtn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/checkBtn"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="260dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="21dp"
+        android:background="#E040FB"
+        android:text="ID check"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@id/signupPswEdt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -26,6 +40,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="21dp"
         android:hint="Password"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@id/signupRePswEdt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -50,23 +65,24 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="21dp"
         android:hint="name"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@id/signupBtn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
+        android:id="@+id/signupBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="30dp"
+        android:background="#FFD600"
         android:text="SignUp"
         android:textAllCaps="false"
-        android:textSize="40sp"
         android:textColor="#ffffff"
-        android:background="#FFD600"
-        android:id="@+id/signupBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

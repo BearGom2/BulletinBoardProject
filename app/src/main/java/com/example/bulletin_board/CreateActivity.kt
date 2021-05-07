@@ -19,8 +19,14 @@ class CreateActivity : AppCompatActivity() {
         SetSave_btn.setOnClickListener {
             if (SetTitle_tv.text.isNotBlank() && SetContent_tv.text.isNotBlank()) {
                 val currentDateTime = Calendar.getInstance().time
-                val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(currentDateTime)
-                setBoard(SetTitle_tv.text.toString(), dateFormat, SetContent_tv.text.toString(), getSetName.getName())
+                val dateFormat =
+                    SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(currentDateTime)
+                setBoard(
+                    SetTitle_tv.text.toString(),
+                    dateFormat,
+                    SetContent_tv.text.toString(),
+                    getSetName.getName()
+                )
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "모든 값을 입력해주십시오.", Toast.LENGTH_SHORT).show()
