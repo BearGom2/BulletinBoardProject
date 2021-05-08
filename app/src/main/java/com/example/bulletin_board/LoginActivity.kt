@@ -21,7 +21,8 @@ class LoginActivity : AppCompatActivity() {
             val call_R: Call<userData> = Client.getClient.login(id, password)
             call_R.enqueue(object : Callback<userData> {
                 override fun onFailure(call: Call<userData>, t: Throwable) {
-                    Toast.makeText(applicationContext, "로그인 실패!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "네트워크 혹은 서버에 문제가 있습니다.", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
                 override fun onResponse(call: Call<userData>, response: Response<userData>) {
@@ -31,11 +32,8 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else if (response.code() == 204) {
-                        Toast.makeText(
-                            applicationContext,
-                            response.message().toString(),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(applicationContext, "아이디 혹은 비밀번호가 다릅니다.", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             })
@@ -44,6 +42,16 @@ class LoginActivity : AppCompatActivity() {
         gosignupTv.setOnClickListener {
             val intent = Intent(baseContext, signupActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onBackPressed() {
+        var mBackWait: Long = 0
+        if (System.currentTimeMillis() - mBackWait >= 2000) {
+            mBackWait = System.currentTimeMillis()
+            Toast.makeText(applicationContext, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_LONG).show()
+        } else {
+            finish()
         }
     }
 }
