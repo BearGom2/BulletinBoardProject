@@ -42,9 +42,9 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="40dp"
+        android:background="#FFD600"
         android:text="Login"
         android:textAllCaps="false"
-        android:background="#FFD600"
         android:textColor="#ffffff"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@id/gosignupTv"
@@ -53,14 +53,14 @@
 
     <TextView
         android:id="@+id/gosignupTv"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="50dp"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:text="SignUp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="50dp"
         android:gravity="right|top"
+        android:text="SignUp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

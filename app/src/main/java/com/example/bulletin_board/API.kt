@@ -31,6 +31,15 @@ interface API {
     @POST("/user/login/check")
     fun check(@Field("_id") id: String): Call<Void>
 
+    @FormUrlEncoded
+    @POST("/user/board/delete")
+    fun delete(
+        @Field("_title") title: String,
+        @Field("_day") day: String,
+        @Field("_content") content: String,
+        @Field("_name") name: String
+    ): Call<Void>
+
     @POST("/board/list")
     fun board_list(): Call<ArrayList<boardData>>
 }
