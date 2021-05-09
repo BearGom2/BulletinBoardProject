@@ -2,6 +2,9 @@ package com.example.bulletin_board
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Filterable
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Locale.filter
 
 
 class ListActivity : AppCompatActivity() {
@@ -19,7 +23,18 @@ class ListActivity : AppCompatActivity() {
 
         recycler_View.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recycler_View.setHasFixedSize(true)
-        setList()
+        recycler_View.adapter = ViewHolder(setList())
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                ViewHolder(setList()).filter.filter(newText)
+                return false
+            }
+        })
 
         Newbtn.setOnClickListener {
             val intent = Intent(this, CreateActivity::class.java)
@@ -27,8 +42,8 @@ class ListActivity : AppCompatActivity() {
         }
     }
 
-    private fun setList() {
-
+    private fun setList(): ArrayList<boardData> {
+        var responseData = arrayListOf<boardData>()
         val call_R: Call<ArrayList<boardData>> = Client.getClient.board_list()
         call_R.enqueue(object : Callback<ArrayList<boardData>> {
             override fun onFailure(call: Call<ArrayList<boardData>>, t: Throwable) {
@@ -41,13 +56,16 @@ class ListActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
-                        recycler_View.adapter = ViewHolder(response.body())
+                        responseData.addAll(response.body()!!)
+                        Log.i("responseData", response.body()!!.toString())
+                        Log.i("responseData", responseData.toString())
                     }
                 } else {
                     Toast.makeText(applicationContext, "error", Toast.LENGTH_SHORT).show()
                 }
             }
         })
+        return responseData
     }
 
     override fun onBackPressed() {

@@ -4,12 +4,18 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_recycler.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ViewHolder(val itemList: ArrayList<boardData>?) :
-    RecyclerView.Adapter<ViewHolder.ViewHolder>() {
+    RecyclerView.Adapter<ViewHolder.ViewHolder>(), Filterable {
+
+    var itemFilterList = itemList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -31,12 +37,50 @@ class ViewHolder(val itemList: ArrayList<boardData>?) :
         }
     }
 
-
     override fun getItemCount(): Int {
         if (itemList != null) {
             return itemList.size
         }
         return 0
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    itemFilterList = itemList
+                } else {
+                    val resultList = ArrayList<boardData>()
+                    if (itemList != null) {
+                        for (row in itemList) {
+                            if (row._title.toLowerCase(Locale.ROOT)
+                                    .contains(charSearch.toLowerCase(Locale.ROOT)) ||
+                                row._day.toLowerCase(Locale.ROOT)
+                                    .contains(charSearch.toLowerCase(Locale.ROOT)) ||
+                                row._title.toLowerCase(Locale.ROOT)
+                                    .contains(charSearch.toLowerCase(Locale.ROOT)) ||
+                                row._name.toLowerCase(Locale.ROOT)
+                                    .contains(charSearch.toLowerCase(Locale.ROOT))
+                            ) {
+                                resultList.add(row)
+                            }
+                        }
+                    }
+                    itemFilterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = itemFilterList
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                itemFilterList = results?.values as ArrayList<boardData>
+                notifyDataSetChanged()
+            }
+        }
+
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -47,6 +91,4 @@ class ViewHolder(val itemList: ArrayList<boardData>?) :
             itemView.contentItem.text = item._content
         }
     }
-
-
 }
