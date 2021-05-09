@@ -3,7 +3,6 @@ package com.example.bulletin_board
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Filterable
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Locale.filter
 
 
 class ListActivity : AppCompatActivity() {
@@ -21,17 +19,20 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        val adapter = ViewHolder(setList())
+
         recycler_View.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recycler_View.setHasFixedSize(true)
-        recycler_View.adapter = ViewHolder(setList())
+        recycler_View.adapter = adapter
+        adapter.filter.filter("")
 
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                ViewHolder(setList()).filter.filter(newText)
+                adapter.filter.filter(newText)
                 return false
             }
         })
