@@ -44,9 +44,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    var mBackWait: Long = 0
 
     override fun onBackPressed() {
-        var mBackWait: Long = 0
         if (System.currentTimeMillis() - mBackWait >= 2000) {
             mBackWait = System.currentTimeMillis()
             Toast.makeText(applicationContext, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_LONG).show()
