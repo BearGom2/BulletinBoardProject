@@ -40,6 +40,19 @@ interface API {
         @Field("_name") name: String
     ): Call<Void>
 
+    @FormUrlEncoded
+    @POST("/user/board/modify")
+    fun modify(
+        @Field("modify_title") modift_title: String,
+        @Field("modify_day") modift_day: String,
+        @Field("modify_content") modift_content: String,
+        @Field("modify_name") modift_name: String,
+        @Field("_title") title: String,
+        @Field("_day") day: String,
+        @Field("_content") content: String,
+        @Field("_name") name: String
+    ): Call<Void>
+
     @POST("/board/list")
     fun board_list(): Call<ArrayList<boardData>>
 }

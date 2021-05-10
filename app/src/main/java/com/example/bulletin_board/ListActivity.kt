@@ -21,9 +21,9 @@ class ListActivity : AppCompatActivity() {
 
         val adapter = ViewHolder(setList())
 
-        recycler_View.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        recycler_View.setHasFixedSize(true)
-        recycler_View.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = adapter
         adapter.filter.filter("")
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -37,7 +37,7 @@ class ListActivity : AppCompatActivity() {
             }
         })
 
-        Newbtn.setOnClickListener {
+        newBtn.setOnClickListener {
             val intent = Intent(this, CreateActivity::class.java)
             startActivity(intent)
         }
@@ -68,11 +68,12 @@ class ListActivity : AppCompatActivity() {
         })
         try {
             Thread.sleep(80)
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
         return responseData
     }
+
     var mBackWait: Long = 0
 
     override fun onBackPressed() {

@@ -10,10 +10,21 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+    var mBackWait: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        loginButtonClick()
+
+        signupTv.setOnClickListener {
+            val intent = Intent(baseContext, signupActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun loginButtonClick() {
         loginBtn.setOnClickListener {
             val id = loginIdEdt.text.toString()
             val password = loginPswEdt.text.toString()
@@ -38,13 +49,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
         }
-
-        gosignupTv.setOnClickListener {
-            val intent = Intent(baseContext, signupActivity::class.java)
-            startActivity(intent)
-        }
     }
-    var mBackWait: Long = 0
 
     override fun onBackPressed() {
         if (System.currentTimeMillis() - mBackWait >= 2000) {

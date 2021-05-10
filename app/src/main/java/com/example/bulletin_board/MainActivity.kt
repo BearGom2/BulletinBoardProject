@@ -20,11 +20,28 @@ class MainActivity : AppCompatActivity() {
         val content = intent.getStringExtra("content")
         val name = intent.getStringExtra("name")
 
-        Title_tv.text = title
-        Writer_tv.text = name
-        Day_tv.text = day
-        Content_tv.text = content
+        TitleTv.text = title
+        WriterTv.text = name
+        DayTv.text = day
+        ContentTv.text = content
 
+        modifyButtonClick(title, day, content, name)
+        delButtonClick(title, day, content, name)
+
+    }
+
+    fun modifyButtonClick(title: String, day: String, content: String, name: String) {
+        modifyBtn.setOnClickListener {
+            val intent = Intent(this, ModifyActivity::class.java)
+            intent.putExtra("mainTitle", title)
+            intent.putExtra("mainName", name)
+            intent.putExtra("mainDay", day)
+            intent.putExtra("mainContent", content)
+            startActivity(intent)
+        }
+    }
+
+    fun delButtonClick(title: String, day: String, content: String, name: String) {
         deleteBtn.setOnClickListener {
             val call_R: Call<Void> = Client.getClient.delete(
                 title, day, content, name

@@ -15,7 +15,7 @@ import kotlin.collections.ArrayList
 class ViewHolder(val itemList: ArrayList<boardData>?) :
     RecyclerView.Adapter<ViewHolder.ViewHolder>(), Filterable {
 
-    var itemFilterList:ArrayList<boardData>? = itemList
+    var itemFilterList: ArrayList<boardData>? = itemList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
@@ -48,7 +48,7 @@ class ViewHolder(val itemList: ArrayList<boardData>?) :
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty()||charSearch.isNullOrBlank()) {
+                if (charSearch.isEmpty() || charSearch.isNullOrBlank()) {
                     itemFilterList = itemList
                 } else {
                     val resultList = ArrayList<boardData>()
@@ -73,6 +73,7 @@ class ViewHolder(val itemList: ArrayList<boardData>?) :
                 filterResults.values = itemFilterList
                 return filterResults
             }
+
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 itemFilterList = results?.values as ArrayList<boardData>

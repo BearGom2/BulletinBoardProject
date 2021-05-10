@@ -47,12 +47,12 @@
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@id/gosignupTv"
+        app:layout_constraintBottom_toTopOf="@id/signupTv"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/gosignupTv"
+        android:id="@+id/signupTv"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginRight="40dp"
