@@ -22,11 +22,19 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/writerItem"
+            android:id="@+id/nameItem"
             android:layout_width="match_parent"
             android:layout_height="16sp"
             android:paddingLeft="16dp"
-            android:text="작성자(아이디)"
+            android:text="작성자"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/idItem"
+            android:layout_width="match_parent"
+            android:layout_height="16sp"
+            android:paddingLeft="16dp"
+            android:text="아이디"
             android:textSize="12sp" />
 
         <TextView

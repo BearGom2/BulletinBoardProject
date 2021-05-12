@@ -17,30 +17,31 @@ class ModifyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify)
 
-        val intent = intent
+        val intent = intent //MainActivity에서 넘오온 값을 수신
         val title = intent.getStringExtra("mainTitle")
         val day = intent.getStringExtra("mainDay")
         val content = intent.getStringExtra("mainContent")
-        val name = intent.getStringExtra("mainName")
+        val id = intent.getStringExtra("id")
 
         modifyTitleEdt.setText(title)
         modifyContentEdt.setText(content)
 
-        val currentDateTime = Calendar.getInstance().time
+        val currentDateTime = Calendar.getInstance().time //현재 시간을 받아오기 위한 코드
         val dateFormat =
-            SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(currentDateTime)
+            SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(currentDateTime) //String 형태로 format
 
         modifySaveBtn.setOnClickListener {
             saveButtonClick(
                 modifyTitleEdt.editableText.toString(),
                 dateFormat,
                 modifyContentEdt.editableText.toString(),
-                name,
+                getSetNameId.getName(),
+                getSetNameId.getId(),
                 title,
                 day,
                 content
             )
-        }
+        } //수정하고 저장하기 버튼을 눌렀을 때 호출
 
 
     }
@@ -50,14 +51,14 @@ class ModifyActivity : AppCompatActivity() {
         modifyDay: String,
         modifyContent: String,
         name: String,
+        id: String,
         title: String,
         day: String,
         content: String
     ) {
-        Log.i("test", modifyTitle + modifyContent + modifyDay)
-        if (modifyTitle.isNotBlank() && modifyContent.isNotBlank()) {
+        if (modifyTitle.isNotBlank() && modifyContent.isNotBlank()) { //내부의 모든 값이 비어있지 않을 때 퉁과
             val call_R: Call<Void> = Client.getClient.modify(
-                modifyTitle, modifyDay, modifyContent, name, title, day, content, name
+                modifyTitle, modifyDay, modifyContent, title, day, content, name, id
             )
             call_R.enqueue(object : Callback<Void> {
                 override fun onFailure(call: Call<Void>, t: Throwable) {
@@ -73,14 +74,13 @@ class ModifyActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         Toast.makeText(applicationContext, "게시물 수정 성공!", Toast.LENGTH_SHORT)
                             .show()
-                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        val intent = Intent(applicationContext, MainActivity::class.java) //수정 된 값을 MainActivity에 전달
                         intent.putExtra("title", modifyTitle)
-                        intent.putExtra("name", name)
                         intent.putExtra("day", modifyDay)
                         intent.putExtra("content", modifyContent)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(applicationContext, "error", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
                     }
                 }
             })

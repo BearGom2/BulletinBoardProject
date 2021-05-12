@@ -12,30 +12,30 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class signupActivity : AppCompatActivity() {
-    var permisson = 0
+    var permisson = 0 //중복 체크가 된 경우에는 1로 표시
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
         signupIdEdt.addTextChangedListener(textWatcher())
-        check()
-        signUp()
+        check()//ID 중복 체크 기능
+        signUp() //회원가입 기능
     }
 
     private fun signUp() {
-        signupBtn.setOnClickListener {
-            if (permisson == 1) {
+        signupBtn.setOnClickListener { //회원가입 버튼을 눌렀을 때 호출
+            if (permisson == 1) { //중복 체크를 했을 때만 통과
                 val id = signupIdEdt.text.toString()
                 val password = signupPswEdt.text.toString()
                 val repassword = signupRePswEdt.text.toString()
                 val name = signupNameEdt.text.toString()
 
-                if (password.equals(repassword)) {
+                if (password.equals(repassword)) { //password와 다시 입력한 password가 맞는 경우에만 통과
                     val call_R: Call<Void> = Client.getClient.join(id, password, name)
                     call_R.enqueue(object : Callback<Void> {
                         override fun onFailure(call: Call<Void>, t: Throwable) {
-                            Toast.makeText(applicationContext, "회원가입 실패!", Toast.LENGTH_SHORT)
+                            Toast.makeText(applicationContext, "서버나 네트워크에 문제가 있습니다.", Toast.LENGTH_SHORT)
                                 .show()
                         }
 
@@ -43,16 +43,16 @@ class signupActivity : AppCompatActivity() {
                             if (response.code() == 200) {
                                 Toast.makeText(
                                     applicationContext,
-                                    response.message().toString(),
+                                    "${id}님 가입을 환영합니다!",
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 val intent = Intent(baseContext, LoginActivity::class.java)
                                 startActivity(intent)
                                 finish()
-                            } else if (response.code() == 204) {
+                            }else{
                                 Toast.makeText(
                                     applicationContext,
-                                    response.message().toString(),
+                                    "회원가입 실패",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -78,7 +78,7 @@ class signupActivity : AppCompatActivity() {
                     if (response.code() == 200) {
                         Toast.makeText(applicationContext, "사용 가능한 ID입니다!", Toast.LENGTH_SHORT)
                             .show()
-                        permisson = 1
+                        permisson = 1 //중복 체크를 확인
                     } else if (response.code() == 204) {
                         Toast.makeText(applicationContext, "이미있는 ID입니다!", Toast.LENGTH_SHORT).show()
                     }
@@ -91,9 +91,9 @@ class signupActivity : AppCompatActivity() {
         }
     }
 
-    private fun textWatcher() = object : TextWatcher {
+    private fun textWatcher() = object : TextWatcher { //텍스트에 변화가 있을 경우 호출
         override fun afterTextChanged(s: Editable?) {
-            permisson = 0
+            permisson = 0 //ID중복 체크를 먼저 받고 이후 고칠 경우 중복 체크 해제
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

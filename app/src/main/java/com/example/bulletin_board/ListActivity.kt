@@ -15,42 +15,43 @@ import retrofit2.Response
 
 
 class ListActivity : AppCompatActivity() {
+    var mBackWait: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
-        val adapter = ViewHolder(setList())
+        val adapter = ViewHolder(setList()) //기본 recyclerView adapter 선언
 
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
         adapter.filter.filter("")
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener { //EditText의 text가 바뀌면 이벤트 호출
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                adapter.filter.filter(newText)
+                adapter.filter.filter(newText)//adapter의 getFilter로 선언한 Filter 호출
                 return false
             }
         })
 
-        newBtn.setOnClickListener {
+        newBtn.setOnClickListener { //생성하기 버튼을 누르면 호출
             val intent = Intent(this, CreateActivity::class.java)
-            startActivity(intent)
+            startActivity(intent) // CreateActivity로 이동
         }
     }
 
-    private fun setList(): ArrayList<boardData> {
+    private fun setList(): ArrayList<boardData> { //response.body에 담겨있는 내용을 반환해주는 함수
         var responseData = arrayListOf<boardData>()
         val call_R: Call<ArrayList<boardData>> = Client.getClient.board_list()
         call_R.enqueue(object : Callback<ArrayList<boardData>> {
             override fun onFailure(call: Call<ArrayList<boardData>>, t: Throwable) {
                 Toast.makeText(applicationContext, "잠시후 다시해주십시오!", Toast.LENGTH_SHORT).show()
             }
-
             override fun onResponse(
                 call: Call<ArrayList<boardData>>,
                 response: Response<ArrayList<boardData>>
@@ -58,15 +59,13 @@ class ListActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
                         responseData.addAll(response.body()!!)
-                        Log.i("responseData", response.body()!!.toString())
-                        Log.i("responseData", responseData.toString())
                     }
                 } else {
                     Toast.makeText(applicationContext, "error", Toast.LENGTH_SHORT).show()
                 }
             }
         })
-        try {
+        try { //비동기화 처리
             Thread.sleep(80)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -74,9 +73,8 @@ class ListActivity : AppCompatActivity() {
         return responseData
     }
 
-    var mBackWait: Long = 0
 
-    override fun onBackPressed() {
+    override fun onBackPressed() { //뒤로가기 버튼을 누르면 호출
         if (System.currentTimeMillis() - mBackWait >= 2000) {
             mBackWait = System.currentTimeMillis()
             Toast.makeText(applicationContext, "뒤로가기 버튼을 한번 더 누르면 종료됩니다.", Toast.LENGTH_LONG).show()

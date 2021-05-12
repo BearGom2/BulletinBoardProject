@@ -12,11 +12,11 @@ interface API {
         @Field("_id") id: String,
         @Field("_psw") pw: String,
         @Field("_name") name: String
-    ): Call<Void>
+    ): Call<Void> //회원가입을 위한 주소
 
     @FormUrlEncoded
     @POST("/user/login")
-    fun login(@Field("_id") id: String, @Field("_psw") pw: String): Call<userData>
+    fun login(@Field("_id") id: String, @Field("_psw") pw: String): Call<userData> //로그인을 위한 주소
 
     @FormUrlEncoded
     @POST("/board/create")
@@ -24,12 +24,13 @@ interface API {
         @Field("_title") title: String,
         @Field("_day") day: String,
         @Field("_content") content: String,
-        @Field("_name") name: String
-    ): Call<Void>
+        @Field("_name") name: String,
+        @Field("_id") id: String
+    ): Call<Void> //게시판 생성을 위한 주소
 
     @FormUrlEncoded
     @POST("/user/login/check")
-    fun check(@Field("_id") id: String): Call<Void>
+    fun check(@Field("_id") id: String): Call<Void> //ID 중복확인을 위한 주소
 
     @FormUrlEncoded
     @POST("/user/board/delete")
@@ -37,8 +38,9 @@ interface API {
         @Field("_title") title: String,
         @Field("_day") day: String,
         @Field("_content") content: String,
-        @Field("_name") name: String
-    ): Call<Void>
+        @Field("_name") name: String,
+        @Field("_id") id: String
+    ): Call<Void> //게시판 삭제를 위한 주소
 
     @FormUrlEncoded
     @POST("/user/board/modify")
@@ -46,13 +48,13 @@ interface API {
         @Field("modify_title") modift_title: String,
         @Field("modify_day") modift_day: String,
         @Field("modify_content") modift_content: String,
-        @Field("modify_name") modift_name: String,
         @Field("_title") title: String,
         @Field("_day") day: String,
         @Field("_content") content: String,
-        @Field("_name") name: String
-    ): Call<Void>
+        @Field("_name") name: String,
+        @Field("_id") id: String
+    ): Call<Void> //게시판 수정을 위한 주소
 
     @POST("/board/list")
-    fun board_list(): Call<ArrayList<boardData>>
+    fun board_list(): Call<ArrayList<boardData>> //게시판의 모든 것을 불러오기 위한 주소
 }

@@ -7,10 +7,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object Client {
-    val BASE_URL: String = "http://49.50.166.23:3000/"
+    val BASE_URL: String = "http://49.50.166.23:3000/" //서버 주소
     val getClient: API
         get() {
-
             val gson = GsonBuilder()
                 .setLenient()
                 .create()
@@ -18,10 +17,10 @@ object Client {
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
             val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
-            val retrofit = Retrofit.Builder()
+            val retrofit = Retrofit.Builder()//retrofit 선언
                 .baseUrl(BASE_URL)
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create(gson))//Gson으로 파싱
                 .build()
 
             return retrofit.create(API::class.java)
