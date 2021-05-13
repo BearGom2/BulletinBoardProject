@@ -21,7 +21,6 @@ class ModifyActivity : AppCompatActivity() {
         val title = intent.getStringExtra("mainTitle")
         val day = intent.getStringExtra("mainDay")
         val content = intent.getStringExtra("mainContent")
-        val id = intent.getStringExtra("id")
 
         modifyTitleEdt.setText(title)
         modifyContentEdt.setText(content)

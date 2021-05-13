@@ -26,7 +26,6 @@ class ListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
-        adapter.filter.filter("")
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener { //EditText의 text가 바뀌면 이벤트 호출
             override fun onQueryTextSubmit(query: String?): Boolean {
