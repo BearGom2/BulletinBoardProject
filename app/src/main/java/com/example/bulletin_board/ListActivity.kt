@@ -2,7 +2,6 @@ package com.example.bulletin_board
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +26,8 @@ class ListActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener { //EditText의 text가 바뀌면 이벤트 호출
+        searchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener { //EditText의 text가 바뀌면 이벤트 호출
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -42,6 +42,13 @@ class ListActivity : AppCompatActivity() {
             val intent = Intent(this, CreateActivity::class.java)
             startActivity(intent) // CreateActivity로 이동
         }
+
+        logoutBtn.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            getSetNameId.setId("")
+            getSetNameId.setName("")
+            startActivity(intent) // CreateActivity로 이동
+        }
     }
 
     private fun setList(): ArrayList<boardData> { //response.body에 담겨있는 내용을 반환해주는 함수
@@ -51,6 +58,7 @@ class ListActivity : AppCompatActivity() {
             override fun onFailure(call: Call<ArrayList<boardData>>, t: Throwable) {
                 Toast.makeText(applicationContext, "잠시후 다시해주십시오!", Toast.LENGTH_SHORT).show()
             }
+
             override fun onResponse(
                 call: Call<ArrayList<boardData>>,
                 response: Response<ArrayList<boardData>>
@@ -71,7 +79,6 @@ class ListActivity : AppCompatActivity() {
         }
         return responseData
     }
-
 
     override fun onBackPressed() { //뒤로가기 버튼을 누르면 호출
         if (System.currentTimeMillis() - mBackWait >= 2000) {
