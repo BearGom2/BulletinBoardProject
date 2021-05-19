@@ -20,7 +20,7 @@ interface API {
 
     @FormUrlEncoded
     @POST("/board/create")
-    fun board_create(
+    fun boardCreate(
         @Field("_title") title: String,
         @Field("_day") day: String,
         @Field("_content") content: String,
@@ -56,5 +56,5 @@ interface API {
     ): Call<Void> //게시판 수정을 위한 주소
 
     @POST("/board/list")
-    fun board_list(): Call<ArrayList<boardData>> //게시판의 모든 것을 불러오기 위한 주소
+    fun boardList(): Call<ArrayList<boardData>> //게시판의 모든 것을 불러오기 위한 주소
 }

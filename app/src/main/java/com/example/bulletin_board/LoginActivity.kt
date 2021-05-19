@@ -10,7 +10,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
-    var mBackWait: Long = 0
+    private var mBackWait: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +29,18 @@ class LoginActivity : AppCompatActivity() {
             val id = loginIdEdt.text.toString() //사용자가 적은 ID를 받아옴
             val password = loginPswEdt.text.toString() //사용자가 적은 Password를 받아옴
 
-            val call_R: Call<userData> = Client.getClient.login(id, password) //서버로 이 전에 받아온 id와 password를 전송함
+            val call_R: Call<userData> =
+                Client.getClient.login(id, password) //서버로 이 전에 받아온 id와 password를 전송함
             call_R.enqueue(object : Callback<userData> { //userData 형태로 json 수신
                 override fun onFailure(call: Call<userData>, t: Throwable) { //서버가 닫혔을 때
                     Toast.makeText(applicationContext, "네트워크 혹은 서버에 문제가 있습니다.", Toast.LENGTH_SHORT)
                         .show()
                 }
 
-                override fun onResponse(call: Call<userData>, response: Response<userData>) { //서버 정상 작동
+                override fun onResponse(
+                    call: Call<userData>,
+                    response: Response<userData>
+                ) { //서버 정상 작동
                     if (response.code() == 200) { //id와 password가 같을 때
                         getSetNameId.setName(response.body()?.name!!) //name 저장
                         getSetNameId.setId(response.body()?.id!!) //id 저장

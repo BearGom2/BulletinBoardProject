@@ -10,8 +10,10 @@
         android:id="@+id/modifyBtn"
         android:layout_width="0dp"
         android:layout_height="30dp"
+        android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:background="#FFD600"
         android:text="수정하기"
@@ -19,7 +21,8 @@
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/TitleTv"
@@ -36,7 +39,8 @@
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/modifyBtn" />
+        app:layout_constraintTop_toBottomOf="@id/modifyBtn"
+        tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
     <TextView
         android:id="@+id/WriterTv"
@@ -50,7 +54,8 @@
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/TitleTv" />
+        app:layout_constraintTop_toBottomOf="@id/TitleTv"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <TextView
         android:id="@+id/DayTv"
@@ -64,7 +69,8 @@
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/WriterTv" />
+        app:layout_constraintTop_toBottomOf="@id/WriterTv"
+        tools:ignore="HardcodedText,RtlSymmetry" />
 
     <TextView
         android:id="@+id/ContentTv"
@@ -74,6 +80,7 @@
         android:layout_marginBottom="40dp"
         android:paddingStart="24dp"
         android:paddingLeft="24dp"
+        android:paddingEnd="8dp"
         android:paddingRight="8dp"
         android:text="@string/radom_text"
         android:textColor="#000000"
@@ -87,14 +94,15 @@
         android:id="@+id/deleteBtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginBottom="20dp"
         android:background="#FFD600"
         android:text="삭제하기"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:textColor="#ffffff"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

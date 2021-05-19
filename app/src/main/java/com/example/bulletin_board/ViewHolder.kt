@@ -31,8 +31,13 @@ class ViewHolder(val itemList: ArrayList<boardData>?) :
                 intent.putExtra("title", holder.itemView.titleItem.text)
                 intent.putExtra("day", holder.itemView.dayItem.text)
                 intent.putExtra("content", holder.itemView.contentItem.text)
+                intent.putExtra("name", holder.itemView.nameItem.text)
                 intent.putExtra("id", holder.itemView.idItem.text)
-                ContextCompat.startActivity(holder.itemView.context, intent, null) //MainActivity로 데이터 이동 및 Activity 이동
+                ContextCompat.startActivity(
+                    holder.itemView.context,
+                    intent,
+                    null
+                ) //MainActivity로 데이터 이동 및 Activity 이동
             }
         }
     }
@@ -48,7 +53,7 @@ class ViewHolder(val itemList: ArrayList<boardData>?) :
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty() || charSearch.isNullOrBlank()) { //검색어가 비었거나 없으면 실행
+                if (charSearch.isEmpty() || charSearch.isBlank()) { //검색어가 비었거나 없으면 실행
                     itemFilterList = itemList //itemFilterList에 기존에 response.body에 있는 모든 값 대입
                 } else { //검색어가 있으면 실행
                     val resultList = ArrayList<boardData>()

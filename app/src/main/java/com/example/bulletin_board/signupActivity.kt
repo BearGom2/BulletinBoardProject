@@ -31,11 +31,15 @@ class signupActivity : AppCompatActivity() {
                 val repassword = signupRePswEdt.text.toString()
                 val name = signupNameEdt.text.toString()
 
-                if (password.equals(repassword)) { //password와 다시 입력한 password가 맞는 경우에만 통과
+                if (password == repassword) { //password와 다시 입력한 password가 맞는 경우에만 통과
                     val call_R: Call<Void> = Client.getClient.join(id, password, name)
                     call_R.enqueue(object : Callback<Void> {
                         override fun onFailure(call: Call<Void>, t: Throwable) {
-                            Toast.makeText(applicationContext, "서버나 네트워크에 문제가 있습니다.", Toast.LENGTH_SHORT)
+                            Toast.makeText(
+                                applicationContext,
+                                "서버나 네트워크에 문제가 있습니다.",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                         }
 
@@ -49,7 +53,7 @@ class signupActivity : AppCompatActivity() {
                                 val intent = Intent(baseContext, LoginActivity::class.java)
                                 startActivity(intent)
                                 finish()
-                            }else{
+                            } else {
                                 Toast.makeText(
                                     applicationContext,
                                     "회원가입 실패",

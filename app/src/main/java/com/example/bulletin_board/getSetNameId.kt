@@ -4,7 +4,7 @@ object getSetNameId {
     private var name: String = "guest"
     private var id: String = "guest"
 
-    fun getId() : String{
+    fun getId(): String {
         return id
     }
 

@@ -2,7 +2,6 @@ package com.example.bulletin_board
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_modify.*
@@ -27,7 +26,10 @@ class ModifyActivity : AppCompatActivity() {
 
         val currentDateTime = Calendar.getInstance().time //현재 시간을 받아오기 위한 코드
         val dateFormat =
-            SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(currentDateTime) //String 형태로 format
+            SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss",
+                Locale.KOREA
+            ).format(currentDateTime) //String 형태로 format
 
         modifySaveBtn.setOnClickListener {
             saveButtonClick(
@@ -36,16 +38,16 @@ class ModifyActivity : AppCompatActivity() {
                 modifyContentEdt.editableText.toString(),
                 getSetNameId.getName(),
                 getSetNameId.getId(),
-                title,
-                day,
-                content
+                title!!,
+                day!!,
+                content!!
             )
         } //수정하고 저장하기 버튼을 눌렀을 때 호출
 
 
     }
 
-    fun saveButtonClick(
+    private fun saveButtonClick(
         modifyTitle: String,
         modifyDay: String,
         modifyContent: String,
@@ -73,7 +75,10 @@ class ModifyActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
                         Toast.makeText(applicationContext, "게시물 수정 성공!", Toast.LENGTH_SHORT)
                             .show()
-                        val intent = Intent(applicationContext, MainActivity::class.java) //수정 된 값을 MainActivity에 전달
+                        val intent = Intent(
+                            applicationContext,
+                            MainActivity::class.java
+                        ) //수정 된 값을 MainActivity에 전달
                         intent.putExtra("title", modifyTitle)
                         intent.putExtra("day", modifyDay)
                         intent.putExtra("content", modifyContent)

@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val day = intent.getStringExtra("day")
         val content = intent.getStringExtra("content")
         val writerId = intent.getStringExtra("id")
-        val name = getSetNameId.getName()
+        val name = intent.getStringExtra("name")
         val userId = getSetNameId.getId()
 
         TitleTv.text = title
@@ -30,23 +30,23 @@ class MainActivity : AppCompatActivity() {
 
 
         modifyBtn.setOnClickListener { //수정하기 버튼을 클릭했을 때
-            modifyButtonClick(title, day, content, writerId, userId) //수정하기 버튼을 클릭했을 때
+            modifyButtonClick(title!!, day!!, content!!, writerId!!, userId) //수정하기 버튼을 클릭했을 때
         }
 
         deleteBtn.setOnClickListener { //삭제하기 버튼을 클릭했을 때
-            delButtonClick(title, day, content, name, writerId, userId) //삭제하기 버튼을 클릭했을 때
+            delButtonClick(title!!, day!!, content!!, name!!, writerId!!, userId) //삭제하기 버튼을 클릭했을 때
         }
 
     }
 
-    fun modifyButtonClick(
+    private fun modifyButtonClick(
         title: String,
         day: String,
         content: String,
         writerId: String,
         userId: String
     ) {
-        if ((writerId.equals(userId))) { //현재 사용자의 ID와 작성자의 ID가 같을 경우에만 퉁과
+        if ((writerId == userId)) { //현재 사용자의 ID와 작성자의 ID가 같을 경우에만 퉁과
             Log.i("test", "작성자")
             val intent = Intent(this, ModifyActivity::class.java) //값과 화면을 ModifyActivity로 이동
             intent.putExtra("mainTitle", title)
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun delButtonClick(
+    private fun delButtonClick(
         title: String,
         day: String,
         content: String,
@@ -68,8 +68,8 @@ class MainActivity : AppCompatActivity() {
         writerId: String,
         userId: String
     ) {
-        if (writerId.equals(userId)) { //현재 사용자의 ID와 작성자의 ID가 같을 경우에만 퉁과
-            val call_R: Call<Void> = Client.getClient.delete(
+        if (writerId == userId) { //현재 사용자의 ID와 작성자의 ID가 같을 경우에만 퉁과
+            val call_R = Client.getClient.delete(
                 title, day, content, name, userId
             )
             call_R.enqueue(object : Callback<Void> {

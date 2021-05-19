@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,35 +16,43 @@
             android:id="@+id/titleItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="8dp"
             android:paddingLeft="8dp"
             android:text="제목"
             android:textColor="#000000"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView
             android:id="@+id/nameItem"
             android:layout_width="match_parent"
             android:layout_height="16sp"
+            android:paddingStart="16dp"
             android:paddingLeft="16dp"
             android:text="작성자"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView
             android:id="@+id/idItem"
             android:layout_width="match_parent"
             android:layout_height="16sp"
+            android:paddingStart="16dp"
             android:paddingLeft="16dp"
             android:text="아이디"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView
             android:id="@+id/dayItem"
             android:layout_width="match_parent"
             android:layout_height="16dp"
+            android:paddingStart="16dp"
             android:paddingLeft="16dp"
             android:text="yyyy-mm-dd -hh-mm-ss"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:ignore="HardcodedText,RtlSymmetry" />
 
         <TextView
             android:id="@+id/contentItem"
@@ -51,10 +60,12 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
+            android:paddingStart="16dp"
             android:paddingLeft="16dp"
             android:text="작성내용"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText,RtlSymmetry" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

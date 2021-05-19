@@ -14,7 +14,7 @@ import retrofit2.Response
 
 
 class ListActivity : AppCompatActivity() {
-    var mBackWait: Long = 0
+    private var mBackWait: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +52,8 @@ class ListActivity : AppCompatActivity() {
     }
 
     private fun setList(): ArrayList<boardData> { //response.body에 담겨있는 내용을 반환해주는 함수
-        var responseData = arrayListOf<boardData>()
-        val call_R: Call<ArrayList<boardData>> = Client.getClient.board_list()
+        val responseData = arrayListOf<boardData>()
+        val call_R: Call<ArrayList<boardData>> = Client.getClient.boardList()
         call_R.enqueue(object : Callback<ArrayList<boardData>> {
             override fun onFailure(call: Call<ArrayList<boardData>>, t: Throwable) {
                 Toast.makeText(applicationContext, "잠시후 다시해주십시오!", Toast.LENGTH_SHORT).show()

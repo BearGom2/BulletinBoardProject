@@ -25,7 +25,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill,HardcodedText,RtlHardcoded,RtlSymmetry" />
 
     <EditText
         android:id="@+id/SetContent_tv"
@@ -46,7 +47,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SetTitle_tv" />
+        app:layout_constraintTop_toBottomOf="@id/SetTitle_tv"
+        tools:ignore="Autofill,HardcodedText,RtlHardcoded" />
 
     <Button
         android:id="@+id/SetSave_btn"
@@ -63,6 +65,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SetContent_tv" />
+        app:layout_constraintTop_toBottomOf="@id/SetContent_tv"
+        tools:ignore="HardcodedText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
