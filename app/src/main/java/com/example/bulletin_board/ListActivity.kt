@@ -66,7 +66,7 @@ class ListActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     if (response.body() != null) {
                         responseData.addAll(response.body()!!)
-                        responseData.sortBy { boardData -> boardData._day }
+                        responseData.sortByDescending { boardData -> boardData._day }
                     }
                 } else {
                     Toast.makeText(applicationContext, "error", Toast.LENGTH_SHORT).show()

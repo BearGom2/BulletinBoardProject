@@ -63,7 +63,7 @@ class ViewHolder(val itemList: ArrayList<boardData>?) :
                                     .contains(charSearch.toLowerCase(Locale.ROOT)) ||
                                 row._day.toLowerCase(Locale.ROOT)
                                     .contains(charSearch.toLowerCase(Locale.ROOT)) ||
-                                row._title.toLowerCase(Locale.ROOT)
+                                row._content.toLowerCase(Locale.ROOT)
                                     .contains(charSearch.toLowerCase(Locale.ROOT)) ||
                                 row._name.toLowerCase(Locale.ROOT)
                                     .contains(charSearch.toLowerCase(Locale.ROOT)) ||
